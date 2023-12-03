@@ -11,9 +11,9 @@
 % ------- Start the Game ------
 
 begin_game :-
-    format('Welcome to Hunt the Wumpus~n'),
+    format('Conquer the Wumpus World – Dare to Explore, Master the Maze ~n'),
     create_matrix(4,4,M),
-    replace_row_col(M,1,1,x,NewMatrix),
+    replace_row_col(M,1,1,👽,NewMatrix),
     assert(my_map(NewMatrix)),
     show_map(NewMatrix),
     initialize,
@@ -22,10 +22,10 @@ begin_game :-
 % Display available actions to the user
 user_menu :-
     format('Actions available to the user:
-            1.Up ⬆️
-            2.Down ⬇️ 
-            3.Right
-            4.Left ⬅️\n'),
+            1.Up    ⬆️
+            2.Down  ⬇️ 
+            3.Right ➡️
+            4.Left  ⬅️\n'),
     write('Select an option🤔\n'),
     read(UserOption),
     execute_user_action(UserOption).
@@ -41,7 +41,7 @@ initialize_sensors :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🤢(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Initialize the positions of wumpus, pit, and gold
 initialize_wumpus :-
@@ -74,8 +74,8 @@ move_up :-
     agent_position(X,Y),
     X1 is X - 1,
     my_map(M),
-    replace_row_col(M,X,Y,+,M1),
-    replace_row_col(M1,X1,Y,x,NewMatrix),
+    replace_row_col(M,X,Y,🟢,M1),
+    replace_row_col(M1,X1,Y,👽,NewMatrix),
 	show_map(NewMatrix),
     format('Agent Position: ~p\n',[agent_position(X1,Y)]),
     retractall(agent_position(_,_)),
@@ -86,15 +86,15 @@ move_up :-
 	stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🤢(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Move the agent down
 move_down :- 
     agent_position(X,Y),
     X1 is X + 1,
     my_map(M),
-    replace_row_col(M,X,Y,+,M1),
-    replace_row_col(M1,X1,Y,x,NewMatrix),
+    replace_row_col(M,X,Y,🟢,M1),
+    replace_row_col(M1,X1,Y,👽,NewMatrix),
 	show_map(NewMatrix),
 	format('Agent Action: ~p\n',[agent_position(X1,Y)]),
     % Update Position of Agent and Map
@@ -106,15 +106,15 @@ move_down :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🤢(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Move the agent right
 move_right :- 
     agent_position(X,Y),
     Y1 is Y + 1,
     my_map(M),
-    replace_row_col(M,X,Y,+,M1),
-    replace_row_col(M1,X,Y1,x,NewMatrix),
+    replace_row_col(M,X,Y,🟢,M1),
+    replace_row_col(M1,X,Y1,👽,NewMatrix),
 	show_map(NewMatrix),
 	format('Agent Action: ~p\n',[agent_position(X,Y1)]),
     % Update Position of Agent and Map
@@ -126,15 +126,15 @@ move_right :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🤢(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Move the agent left
 move_left :- 
     agent_position(X,Y),
     Y1 is Y - 1,
     my_map(M),
-    replace_row_col(M,X,Y,+,M1),
-    replace_row_col(M1,X,Y1,x,NewMatrix),
+    replace_row_col(M,X,Y,🟢,M1),
+    replace_row_col(M1,X,Y1,👽,NewMatrix),
 	show_map(NewMatrix),
 	format('Agent Action: ~p\n',[agent_position(X,Y1)]),
     % Update Position of Agent and Map
@@ -146,7 +146,7 @@ move_left :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🤢(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Sensors of Agent
 stench(yes) :-
@@ -239,7 +239,7 @@ generate_dots_list1(0, L, L) :- !.
 generate_dots_list1(N, R, L) :- 
     N > 0,
     N1 is N-1,
-    generate_dots_list1(N1, [·|R], L).
+    generate_dots_list1(N1, [⚪|R], L).
 
 % Create a matrix with the specified number of rows and columns
 create_matrix(Rows,Cols,Matrix) :-
