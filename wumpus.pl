@@ -22,11 +22,11 @@ begin_game :-
 % Display available actions to the user
 user_menu :-
     format('Actions available to the user:
-            1.Up ⇡
-            2.Down ⇣ 
-            3.Right ⇢
-            4.Left ⇠\n'),
-    write('Select an option\n'),
+            1.Up ⬆️
+            2.Down ⬇️ 
+            3.Right
+            4.Left ⬅️\n'),
+    write('Select an option🤔\n'),
     read(UserOption),
     execute_user_action(UserOption).
 
@@ -41,7 +41,7 @@ initialize_sensors :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench(~p),Breeze(~p),Glitter(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Initialize the positions of wumpus, pit, and gold
 initialize_wumpus :-
@@ -86,7 +86,7 @@ move_up :-
 	stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench(~p),Breeze(~p),Glitter(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Move the agent down
 move_down :- 
@@ -106,7 +106,7 @@ move_down :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench(~p),Breeze(~p),Glitter(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Move the agent right
 move_right :- 
@@ -126,7 +126,7 @@ move_right :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench(~p),Breeze(~p),Glitter(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Move the agent left
 move_left :- 
@@ -146,7 +146,7 @@ move_left :-
     stench(Stench),
     breeze(Breeze),
     glitter(Glitter),
-    format('Sensors: [Stench(~p),Breeze(~p),Glitter(~p)]\n', [Stench,Breeze,Glitter]).
+    format('Sensors: [Stench🦨💨(~p),Breeze💨(~p),Glitter🤩(~p)]\n', [Stench,Breeze,Glitter]).
 
 % Sensors of Agent
 stench(yes) :-
@@ -190,11 +190,11 @@ glitter(no).
 % Check Health of Agent
 can_execute_action(no) :-
     agent_health(dead), !,
-    write('You are dead!\n').
+    write('You are dead💀!\n').
 
 can_execute_action(no) :-
     agent_in_cave(no), !,
-    write('Game Over!\n').
+    write('Game Over🔚!\n').
 
 can_execute_action(yes).
 
@@ -206,7 +206,7 @@ update_agent_health :-
   !,
   retract(agent_health(alive)),
   assert(agent_health(dead)),
-  format("The Wumpus Killed you~n").
+  format("The Wumpus Killed you💀~n").
 
 update_agent_health :-
   agent_health(alive),
@@ -215,7 +215,7 @@ update_agent_health :-
   !,
   retract(agent_health(alive)),
   assert(agent_health(dead)),
-  format("You're stuck in the pit~n").
+  format("You're stuck in the pit⚫~n").
 
 update_agent_health.
 
@@ -223,7 +223,7 @@ update_agent_health.
 display_results :-
     agent_position(X, Y),
     gold_position(X, Y),
-    format('Congratulations! You found the gold and won the game!~n'),
+    format('Congratulations! You found the Diamond💎 and won the game🏆!~n'),
     retract(agent_in_cave(yes)),
     assert(agent_in_cave(no)).
 
